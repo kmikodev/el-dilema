@@ -81,18 +81,31 @@ README. Si algo no cuadra, la skill se para y pregunta.
 - Si un secreto llega a tocar el índice de git, se para todo y se avisa antes de
   seguir.
 
-## Arrancar la sesión
+## El servidor MCP de GitHub
 
-Se arranca con `./bin/dilema`, no con `claude` a secas.
+La configuración del MCP **no vive en el repositorio**: vive en `~/.claude.json`,
+porque lleva el token en línea. Es la vía que documenta GitHub para Claude Code.
+`.mcp.json` está en `.gitignore` para que un fichero local con credenciales no
+pueda commitearse por accidente.
 
-El motivo no es cosmético: la expansión `${GITHUB_PAT}` de `.mcp.json` lee el
-entorno del proceso que lanza `claude`, y **no** el bloque `env` de
-`.claude/settings.local.json`. Si arrancas con `claude` a pelo, el servidor MCP
-de GitHub se conecta sin credencial y falla al primer intento de crear una issue.
-`bin/dilema` carga el `.env` y arranca Claude Code por ti.
+A cambio, la configuración no viaja con el repo. Para no perderla, el comando que
+la crea se documenta aquí. Se ejecuta **en la terminal, no dentro de Claude
+Code**, desde la raíz del proyecto, y después se reinicia Claude Code:
 
-La primera vez, Claude Code pedirá aprobar el servidor MCP declarado en
-`.mcp.json`. Se aprueba una vez y no vuelve a preguntar.
+```bash
+export GITHUB_PAT="$(grep '^GITHUB_PAT=' .env | cut -d= -f2-)"
+claude mcp add-json github "{\"type\":\"http\",\"url\":\"https://api.githubcopilot.com/mcp/x/issues\",\"headers\":{\"Authorization\":\"Bearer $GITHUB_PAT\"}}"
+```
+
+Se comprueba con `claude mcp list` y `claude mcp get github`.
+
+La URL apunta al toolset de issues (`/mcp/x/issues`), no al servidor completo:
+9 herramientas en vez de 47, que es mucho menos ruido en el contexto. Si en
+alguna fase hacen falta pull requests o workflows, se rehace el servidor con la
+URL ampliada, pero no antes de necesitarlo.
+
+Si `/mcp` dice `Failed to reconnect to github`, casi siempre es el token: un
+`Authorization: Bearer` vacío devuelve 400.
 
 ## Decidir antes de construir
 
@@ -100,9 +113,4 @@ Las decisiones de producto se toman con los subagentes de `.claude/agents/`:
 `producto`, `viabilidad`, `charla` y `abogado-del-diablo`. Son de sólo lectura:
 deliberan, no construyen. Todo lo que salga de esa deliberación y merezca
 seguimiento se convierte en una issue de GitHub mediante el servidor MCP
-configurado en `.mcp.json`.
-
-Ese servidor apunta al toolset de issues del GitHub MCP remoto
-(`/mcp/x/issues`), no al servidor completo: 9 herramientas en vez de 47. Si en
-alguna fase hacen falta pull requests, workflows o búsqueda de código, se amplía
-la URL, pero no antes de necesitarlo.
+configurado en `~/.claude.json`.
