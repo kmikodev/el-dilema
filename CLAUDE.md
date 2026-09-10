@@ -81,42 +81,47 @@ README. Si algo no cuadra, la skill se para y pregunta.
 - Si un secreto llega a tocar el índice de git, se para todo y se avisa antes de
   seguir.
 
-## El servidor MCP de GitHub
+## Arrancar la sesión
 
-Está configurado a **nivel de proyecto**: vive en `.mcp.json`, en la raíz del
-repositorio, con el token embebido en el header.
+Se arranca con `./bin/dilema`, no con `claude` a secas.
 
-Ese fichero **está en `.gitignore` y no se commitea nunca**. Es la propia
-recomendación de GitHub para Claude Code: ignorar tanto `.env` como `.mcp.json`,
-porque el token va en línea y no hay expansión de variables que valga (la
-expansión `${VAR}` de `.mcp.json` lee el entorno del proceso que lanza `claude`,
-no el `env` de `settings.local.json`, así que obligaría a un launcher).
+El motivo no es cosmético. `.mcp.json` lleva `${GITHUB_PAT}` en vez del token, y
+esa expansión lee **el entorno del proceso que lanza `claude`**: no lee el
+`.env`, ni el bloque `env` de `.claude/settings.local.json`. Si arrancas con
+`claude` a pelo, el header sale como `Bearer ` vacío, el servidor responde 400 y
+`/mcp` dice `Failed to reconnect to github`. `bin/dilema` carga el `.env` y
+arranca Claude Code por ti, y falla con un mensaje claro si falta el token.
 
-Como el fichero no viaja con el repo, el comando que lo regenera se documenta
-aquí. Se ejecuta **en la terminal, no dentro de Claude Code**, desde la raíz del
-proyecto, y después se reinicia Claude Code:
+Al clonar de nuevo hay que reactivar los hooks, que git no versiona:
 
 ```bash
-export GITHUB_PAT="$(grep '^GITHUB_PAT=' .env | cut -d= -f2-)"
-claude mcp add-json github "{\"type\":\"http\",\"url\":\"https://api.githubcopilot.com/mcp/x/issues\",\"headers\":{\"Authorization\":\"Bearer $GITHUB_PAT\"}}" --scope project
+git config core.hooksPath .githooks
 ```
 
-Cuidado con los dos scopes, que se confunden: `local` guarda la configuración en
-`~/.claude.json` y sólo la ves tú; `project` la guarda en `.mcp.json`, dentro del
-repositorio. Si existen las dos, la de `local` tapa a la de `project`, así que
-debe haber sólo una. Se comprueba con `claude mcp list` y `claude mcp get github`.
+## El servidor MCP de GitHub
+
+Configurado a **nivel de proyecto** en `.mcp.json`, que sí se commitea porque no
+contiene ningún secreto: sólo la referencia `${GITHUB_PAT}`. El token vive
+únicamente en `.env`.
+
+Cuidado con los scopes, que se confunden. `claude mcp add-json ... --scope local`
+guarda en `~/.claude.json`; `--scope project` **sobrescribe `.mcp.json` con el
+token en línea**, que es justo lo que aquí no queremos. Si existen los dos, el de
+`local` tapa al de `project`. Para ver cuál está activo: `claude mcp list` y
+`claude mcp get github`.
+
+Por eso hay un hook `pre-commit` en `.githooks/` que aborta el commit si detecta
+un `.env` en el índice o algo con forma de token de GitHub en los cambios. Es la
+red por si alguien regenera `.mcp.json` con el comando equivocado.
 
 El servidor debe llamarse `github`: los permisos de `.claude/settings.json`
-allowan las herramientas de lectura por el prefijo `mcp__github__`, y con otro
-nombre dejarían de casar.
+allowan las lecturas por el prefijo `mcp__github__`, y con otro nombre dejarían
+de casar.
 
 La URL apunta al toolset de issues (`/mcp/x/issues`), no al servidor completo:
-9 herramientas en vez de 47, que es mucho menos ruido en el contexto. Si en
-alguna fase hacen falta pull requests o workflows, se rehace con la URL ampliada,
-pero no antes de necesitarlo.
-
-Si `/mcp` dice `Failed to reconnect to github`, casi siempre es el token: un
-`Authorization: Bearer` vacío devuelve 400.
+9 herramientas en vez de 47, mucho menos ruido en el contexto. Si en alguna fase
+hacen falta pull requests o workflows, se amplía la URL, pero no antes de
+necesitarlo.
 
 ## Decidir antes de construir
 

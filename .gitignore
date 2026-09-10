@@ -5,10 +5,6 @@
 .env.*
 !.env.example
 
-# Configuración de MCP: vive en ~/.claude.json (fuera del repo) porque lleva
-# el token en línea. Si alguna vez se crea un .mcp.json local, que no se cuele.
-.mcp.json
-
 # ---------------------------------------------------------------------------
 # Configuración local de Claude Code (contiene credenciales y preferencias
 # de esta máquina). Lo que sí se comparte con el repo es .claude/settings.json.
