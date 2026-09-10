@@ -81,6 +81,19 @@ README. Si algo no cuadra, la skill se para y pregunta.
 - Si un secreto llega a tocar el índice de git, se para todo y se avisa antes de
   seguir.
 
+## Arrancar la sesión
+
+Se arranca con `./bin/dilema`, no con `claude` a secas.
+
+El motivo no es cosmético: la expansión `${GITHUB_PAT}` de `.mcp.json` lee el
+entorno del proceso que lanza `claude`, y **no** el bloque `env` de
+`.claude/settings.local.json`. Si arrancas con `claude` a pelo, el servidor MCP
+de GitHub se conecta sin credencial y falla al primer intento de crear una issue.
+`bin/dilema` carga el `.env` y arranca Claude Code por ti.
+
+La primera vez, Claude Code pedirá aprobar el servidor MCP declarado en
+`.mcp.json`. Se aprueba una vez y no vuelve a preguntar.
+
 ## Decidir antes de construir
 
 Las decisiones de producto se toman con los subagentes de `.claude/agents/`:
@@ -88,3 +101,8 @@ Las decisiones de producto se toman con los subagentes de `.claude/agents/`:
 deliberan, no construyen. Todo lo que salga de esa deliberación y merezca
 seguimiento se convierte en una issue de GitHub mediante el servidor MCP
 configurado en `.mcp.json`.
+
+Ese servidor apunta al toolset de issues del GitHub MCP remoto
+(`/mcp/x/issues`), no al servidor completo: 9 herramientas en vez de 47. Si en
+alguna fase hacen falta pull requests, workflows o búsqueda de código, se amplía
+la URL, pero no antes de necesitarlo.
