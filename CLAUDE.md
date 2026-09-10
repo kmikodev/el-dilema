@@ -76,8 +76,10 @@ README. Si algo no cuadra, la skill se para y pregunta.
   `sed -E 's/=.*/=<oculto>/' .env`, nunca los valores.
 - Ninguna credencial entra en un fichero versionado. `.mcp.json` y
   `.claude/settings.json` se commitean, así que sólo contienen referencias a
-  variables de entorno; los valores viven en `.claude/settings.local.json`,
-  que está ignorado.
+  variables de entorno; los valores viven en `.env`, que está ignorado.
+- El hook `pre-commit` de `.githooks/` es la red: aborta el commit si detecta un
+  `.env` en el índice o algo con forma de token de GitHub en los cambios. Opera
+  sobre git, así que sigue protegiendo aunque la sesión corra sin permisos.
 - Si un secreto llega a tocar el índice de git, se para todo y se avisa antes de
   seguir.
 
@@ -160,4 +162,4 @@ Las decisiones de producto se toman con los subagentes de `.claude/agents/`:
 `producto`, `viabilidad`, `charla` y `abogado-del-diablo`. Son de sólo lectura:
 deliberan, no construyen. Todo lo que salga de esa deliberación y merezca
 seguimiento se convierte en una issue de GitHub mediante el servidor MCP
-configurado en `~/.claude.json`.
+configurado en `.mcp.json`.
