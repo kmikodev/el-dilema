@@ -81,6 +81,20 @@ README. Si algo no cuadra, la skill se para y pregunta.
 - Si un secreto llega a tocar el índice de git, se para todo y se avisa antes de
   seguir.
 
+## Puesta en marcha desde cero
+
+Tras clonar el repositorio hacen falta tres cosas. Ninguna la versiona git, y si
+falta cualquiera de ellas el MCP de GitHub no conecta:
+
+1. **El token.** `cp .env.example .env` y rellenar `GITHUB_PAT`.
+2. **Los hooks.** `git config core.hooksPath .githooks`.
+3. **La aprobación del servidor MCP.** Un `.mcp.json` de proyecto arranca en
+   `Pending approval` y hay que aprobarlo una vez, la primera vez que Claude
+   Code lo pregunta.
+
+Se comprueban las tres de golpe con `claude mcp list`, ejecutado desde la raíz y
+con el entorno cargado. Debe salir `github ... ✔ Connected`.
+
 ## Arrancar la sesión
 
 Se arranca con `./bin/dilema`, no con `claude` a secas.
@@ -122,6 +136,23 @@ La URL apunta al toolset de issues (`/mcp/x/issues`), no al servidor completo:
 9 herramientas en vez de 47, mucho menos ruido en el contexto. Si en alguna fase
 hacen falta pull requests o workflows, se amplía la URL, pero no antes de
 necesitarlo.
+
+### Cuando no conecta
+
+`Failed to reconnect to github` tiene dos causas distintas, y pueden darse a la
+vez: arreglar una sola deja el síntoma igual. `claude mcp list` distingue cuál
+es, porque las nombra explícitamente.
+
+- `Missing environment variables: GITHUB_PAT` — la sesión se arrancó con
+  `claude` en vez de con `./bin/dilema`, el header salió como `Bearer ` vacío y
+  el servidor devolvió 400. Se sale y se arranca con el launcher.
+- `⏸ Pending approval` — el servidor de `.mcp.json` no está aprobado todavía.
+  Se aprueba cuando Claude Code lo pregunta al arrancar. Queda registrado en
+  `~/.claude.json`, en `enabledMcpjsonServers` de este proyecto; si ahí aparece
+  una lista vacía, es que nunca se aprobó o se rechazó.
+
+Ninguna de las dos se arregla editando `.mcp.json`: el fichero es correcto en
+ambos casos.
 
 ## Decidir antes de construir
 
