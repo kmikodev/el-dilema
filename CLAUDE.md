@@ -83,26 +83,37 @@ README. Si algo no cuadra, la skill se para y pregunta.
 
 ## El servidor MCP de GitHub
 
-La configuración del MCP **no vive en el repositorio**: vive en `~/.claude.json`,
-porque lleva el token en línea. Es la vía que documenta GitHub para Claude Code.
-`.mcp.json` está en `.gitignore` para que un fichero local con credenciales no
-pueda commitearse por accidente.
+Está configurado a **nivel de proyecto**: vive en `.mcp.json`, en la raíz del
+repositorio, con el token embebido en el header.
 
-A cambio, la configuración no viaja con el repo. Para no perderla, el comando que
-la crea se documenta aquí. Se ejecuta **en la terminal, no dentro de Claude
-Code**, desde la raíz del proyecto, y después se reinicia Claude Code:
+Ese fichero **está en `.gitignore` y no se commitea nunca**. Es la propia
+recomendación de GitHub para Claude Code: ignorar tanto `.env` como `.mcp.json`,
+porque el token va en línea y no hay expansión de variables que valga (la
+expansión `${VAR}` de `.mcp.json` lee el entorno del proceso que lanza `claude`,
+no el `env` de `settings.local.json`, así que obligaría a un launcher).
+
+Como el fichero no viaja con el repo, el comando que lo regenera se documenta
+aquí. Se ejecuta **en la terminal, no dentro de Claude Code**, desde la raíz del
+proyecto, y después se reinicia Claude Code:
 
 ```bash
 export GITHUB_PAT="$(grep '^GITHUB_PAT=' .env | cut -d= -f2-)"
-claude mcp add-json github "{\"type\":\"http\",\"url\":\"https://api.githubcopilot.com/mcp/x/issues\",\"headers\":{\"Authorization\":\"Bearer $GITHUB_PAT\"}}"
+claude mcp add-json github "{\"type\":\"http\",\"url\":\"https://api.githubcopilot.com/mcp/x/issues\",\"headers\":{\"Authorization\":\"Bearer $GITHUB_PAT\"}}" --scope project
 ```
 
-Se comprueba con `claude mcp list` y `claude mcp get github`.
+Cuidado con los dos scopes, que se confunden: `local` guarda la configuración en
+`~/.claude.json` y sólo la ves tú; `project` la guarda en `.mcp.json`, dentro del
+repositorio. Si existen las dos, la de `local` tapa a la de `project`, así que
+debe haber sólo una. Se comprueba con `claude mcp list` y `claude mcp get github`.
+
+El servidor debe llamarse `github`: los permisos de `.claude/settings.json`
+allowan las herramientas de lectura por el prefijo `mcp__github__`, y con otro
+nombre dejarían de casar.
 
 La URL apunta al toolset de issues (`/mcp/x/issues`), no al servidor completo:
 9 herramientas en vez de 47, que es mucho menos ruido en el contexto. Si en
-alguna fase hacen falta pull requests o workflows, se rehace el servidor con la
-URL ampliada, pero no antes de necesitarlo.
+alguna fase hacen falta pull requests o workflows, se rehace con la URL ampliada,
+pero no antes de necesitarlo.
 
 Si `/mcp` dice `Failed to reconnect to github`, casi siempre es el token: un
 `Authorization: Bearer` vacío devuelve 400.
