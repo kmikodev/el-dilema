@@ -11,8 +11,9 @@ En este repositorio no se commitea durante una fase: el trabajo se acumula y la
 fase se cierra con **un único commit y un tag anotado**. Esta skill es la única
 vía por la que eso ocurre.
 
-El argumento `fase` es el sufijo del tag: `/cerrar-fase 1-datos` produce el tag
-`fase-1-datos`. Si no te lo han dado, pregúntalo antes de tocar nada.
+El argumento `fase` es el nombre completo del tag, en formato `NN-nombre` con el
+número a dos dígitos: `/cerrar-fase 03-datos`. Si no te lo han dado, mira
+`git tag -l` para ver por cuál va la cuenta y propón el siguiente.
 
 **Si en cualquier paso algo no cuadra, párate y pregunta.** No arregles el
 problema por tu cuenta, no sigas «asumiendo que era intencionado» y desde luego
@@ -98,13 +99,15 @@ EOF
 Comprueba primero que no existe:
 
 ```bash
-git tag -l "fase-<fase>"
+git tag -l "<fase>"
 ```
 
 Si ya existe, **para y pregunta**: reetiquetar reescribe la historia de la charla.
+Comprueba también que no haya una rama con ese nombre (`git branch --list "<fase>"`):
+un tag y una rama homónimos hacen ambiguo el `checkout`.
 
 ```bash
-git tag -a "fase-<fase>" -m "Resumen de qué quedó funcionando al final de esta fase."
+git tag -a "<fase>" -m "Resumen de qué quedó funcionando al final de esta fase."
 ```
 
 El mensaje del tag no repite el del commit: describe **el estado alcanzado**, para
@@ -113,7 +116,7 @@ que quien salte a ese tag durante la charla sepa qué se encuentra.
 ## Paso 8 — Cerrar el círculo
 
 ```bash
-git log --oneline -3 && git tag -n9 -l "fase-*"
+git log --oneline -3 && git tag -n9
 ```
 
 Enseña el resultado y termina recordando dos cosas:

@@ -1,9 +1,8 @@
 # ---------------------------------------------------------------------------
-# Secretos. Nunca, bajo ninguna circunstancia, en el historial.
+# Los secretos NO se listan aquí: .env está excluido en .git/info/exclude, que
+# es local y no se versiona. Así el nombre del fichero de credenciales no viaja
+# en el repositorio. La red contra despistes es el hook pre-commit.
 # ---------------------------------------------------------------------------
-.env
-.env.*
-!.env.example
 
 # ---------------------------------------------------------------------------
 # Configuración local de Claude Code (contiene credenciales y preferencias

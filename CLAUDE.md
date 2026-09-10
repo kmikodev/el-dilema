@@ -25,6 +25,11 @@ la fuente de verdad.
 ## Git
 
 - Rama única: `main`. No se crean ramas salvo petición explícita.
+- **Los marcadores del proceso son tags, nunca ramas.** Un tag es un punto fijo
+  al que saltar durante la charla; una rama se mueve y deja de marcar nada.
+- **Nunca una rama con el mismo nombre que un tag.** Git acepta las dos cosas y
+  entonces `git checkout 01-setup` es ambiguo: resuelve a la rama y te lleva a
+  un sitio distinto del que marcaste. Delante de público eso no se depura.
 - **No se hace `push` nunca sin que se pida**. El remoto es `origin`
   (`kmikodev/el-dilema`).
 - **No se commitea hasta cerrar una fase.** El trabajo se acumula en el árbol de
@@ -50,18 +55,23 @@ El ámbito es libre y descriptivo (`agente`, `datos`, `ui`, `deploy`, `config`).
 
 ### Tags
 
-Cada fase cerrada lleva un **tag anotado** con el nombre de la fase:
+Cada fase cerrada lleva un **tag anotado** `NN-nombre`, con el número a dos
+dígitos para que ordenen solos:
 
 ```
-fase-0-decision
-fase-1-datos
-fase-2-agente
-fase-3-interfaz
-fase-4-despliegue
+01-setup
+02-decision
+03-datos
+04-agente
+05-interfaz
+06-despliegue
 ```
 
 El mensaje del tag resume qué quedó funcionando al final de esa fase. Sirve para
-saltar a cualquier punto del proceso durante la charla.
+saltar a cualquier punto del proceso durante la charla, así que se escribe
+pensando en quién hará ese salto en directo.
+
+Nunca se crea una rama con uno de estos nombres: haría ambiguo el `checkout`.
 
 ## Cerrar una fase
 
@@ -71,7 +81,9 @@ README. Si algo no cuadra, la skill se para y pregunta.
 
 ## Secretos
 
-- `.env` está en `.gitignore` y **no se lee, ni se imprime, ni se cita**. Si hace
+- `.env` está excluido en `.git/info/exclude`, que es local y no se versiona,
+  para que el nombre del fichero de credenciales no viaje en el repositorio.
+  **No se lee, ni se imprime, ni se cita.** Si hace
   falta saber qué variables contiene, se miran las claves con
   `sed -E 's/=.*/=<oculto>/' .env`, nunca los valores.
 - Ninguna credencial entra en un fichero versionado. `.mcp.json` y

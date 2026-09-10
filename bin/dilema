@@ -14,4 +14,4 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.."
 set -a; . ./.env; set +a
 [[ -n "${GITHUB_PAT:-}" ]] || { echo "GITHUB_PAT vacío en .env: el MCP de GitHub no autenticará." >&2; exit 1; }
 
-exec bro "$@"
+exec claude "$@"
