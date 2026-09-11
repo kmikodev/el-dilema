@@ -21,6 +21,17 @@ de este repositorio es material de la charla y se lee en pantalla delante de gen
 no ha visto el código, y por eso la deliberación que eligió esta aplicación frente a
 otras cuatro candidatas se conserva en `CONCEPTO.md` en vez de resumirse en una línea.
 
+## Antes de nada: `ESTADO.md`
+
+**Toda sesión empieza leyendo `ESTADO.md`.** Es el handoff entre sesiones: en qué fase
+estamos, qué se decidió en la última, qué bloquea, qué es lo siguiente y qué está roto
+ahora mismo. No repite lo que hay en este fichero —esto son las reglas permanentes,
+aquello es el estado de hoy— y existe para no tener que releerse el repositorio entero
+antes de poder trabajar.
+
+**Cerrar una fase incluye actualizarlo.** Un `ESTADO.md` que describe una fase anterior
+es peor que no tenerlo, porque la siguiente sesión se lo cree.
+
 ## Regla primera: no inventar lo que no está decidido
 
 El README separa a propósito lo que está decidido de lo que no, y el final de
@@ -97,7 +108,9 @@ Nunca se crea una rama con uno de estos nombres: haría ambiguo el `checkout`.
 
 No se cierra a mano. Se usa la skill `cerrar-fase`, que comprueba el árbol,
 enseña el diff, hace el commit, crea el tag anotado y recuerda actualizar el
-README. Si algo no cuadra, la skill se para y pregunta.
+README. Si algo no cuadra, la skill se para y pregunta. Actualizar `ESTADO.md`
+es parte de cerrar: mientras no refleje la fase que acaba, la fase no está
+cerrada.
 
 ## Secretos
 

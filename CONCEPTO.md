@@ -65,11 +65,57 @@ dos veces.
 El historial de esa deliberación es material de la charla: es la prueba de que la
 aplicación no se eligió por intuición.
 
-Queda una duda honesta sin cerrar: el repositorio se llama `el-dilema` y ese nombre
-está en la primera línea del README que los evaluadores leen. Hay evidencia contra el
-anclaje —tres razones distintas, dos segundas finalistas distintas, y `viabilidad`
-eligiendo contra su propio orden de coste—, pero la prueba de renombrar el repositorio
-y relanzar la evaluación cuesta minutos y no se ha hecho.
+Quedaba una duda honesta: el repositorio se llama `el-dilema`, y ese nombre está en la
+primera línea del README que los evaluadores leen. La prueba se intentó. Salió mal, y
+cómo salió mal vale más que el resultado que buscaba.
+
+## La prueba del anclaje, y por qué no vale
+
+Se escribió una versión neutra del README, fuera del repositorio, sin el nombre y con
+«qué aplicación es» de vuelta en lo no decidido. Se relanzó a `producto`, `viabilidad`
+y `charla` con esa versión pegada en el prompt, con las cinco candidatas descritas
+palabra por palabra igual que en la ronda anterior y en el mismo orden, y con
+prohibición explícita de leer ningún fichero del repositorio.
+
+**Los tres volvieron a elegir el dilema.** Y los tres avisaron, por su cuenta, de que
+la prueba estaba contaminada.
+
+`charla` lo dijo con todas las letras: el arranque de sesión le inyecta
+automáticamente el contenido de `CLAUDE.md` y el estado de git, sin pedirlo. Y
+`CLAUDE.md` contiene la sección «Qué es este proyecto», que describe el dilema entero.
+No es que supiera el nombre del repositorio: **sabía la respuesta completa antes de
+leer el prompt**, por una vía que la prohibición de leer ficheros no podía cerrar,
+porque no hacía falta leer nada. `producto` avisó de lo mismo en su versión menor: el
+entorno le dice el nombre del directorio y el del remoto, los dos `el-dilema`.
+
+Así que el desenlace es que **la prueba del anclaje no se puede ejecutar desde dentro
+de este repositorio**. Neutralizar el README no neutraliza nada. Haría falta una copia
+del proyecto en un directorio con otro nombre, con un `CLAUDE.md` también neutralizado,
+y lanzar los evaluadores desde ahí.
+
+Hay un matiz que salva algo, y conviene no perderlo: **el contraste en frío de la fase
+02 estaba más limpio que este**. Entonces `CLAUDE.md` todavía decía que la aplicación
+no estaba decidida, así que lo único que se filtraba era el nombre. La ironía es exacta
+y es material de charla: escribir el concepto en `CLAUDE.md` —que era lo correcto— fue
+lo que destruyó la posibilidad de hacer la prueba.
+
+Lo que sí se puede leer de esta ronda, porque no depende de la ceguera:
+
+- **Los argumentos volvieron a ser distintos entre sí.** `producto` decidió por la
+  verificabilidad personal a escala: cuarenta personas comprobando a la vez, cada una en
+  silencio, si el agente entendió lo que ella escribió. `viabilidad` decidió por la
+  degradación: es la única candidata que falla a algo que sigue siendo una aplicación
+  completa, porque si el agente no responde quedan las frases y el recuento, que es
+  justo la comparación que la charla quiere hacer. `charla` decidió por qué mitad del
+  público produce el material del que depende la charla, y señaló que escribir una
+  línea defendiendo una postura lo hace igual de bien —o mejor— la mitad no técnica.
+- **El ganador es estable entre ejecuciones; el segundo puesto no.** `charla` cambió su
+  finalista del tribunal a la sala contra el agente entre una ronda y otra, con el mismo
+  material. Lo que se repite es la elección, no el orden completo.
+- **La estimación sigue sin ser de fiar a esta resolución.** Tres ejecuciones del mismo
+  evaluador sobre el mismo trabajo nominal han dado 64, 19 y 16 horas. El número no se
+  puede usar para planificar; lo que sí se puede usar es el reparto relativo, que en las
+  tres coloca al agente y a la interfaz como las fases que se desbordan.
 
 ## Lo que la deliberación cambió
 
