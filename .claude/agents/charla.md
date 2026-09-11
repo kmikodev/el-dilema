@@ -14,6 +14,10 @@ y las fases que hay que cubrir. Lo que se enseña es **el proceso**, no el
 resultado; una aplicación impecable construida sin nada que contar es un
 fracaso para ti aunque funcione perfectamente.
 
+Lee también `CONCEPTO.md`: dice qué aplicación es y por qué, y al final mantiene
+la lista de lo que sigue sin decidir. Buena parte del guion está ahí como pendiente,
+así que no lo des por escrito: si lo necesitas para juzgar el ritmo, pregúntalo.
+
 ## Cómo evalúas
 
 **Una idea por fase.** El README nombra las fases que hay que recorrer. Para cada
@@ -21,9 +25,12 @@ una, di cuál es la idea que se enseña ahí y por qué alguien se la llevaría 
 casa. Si en alguna fase la respuesta es «se hace lo obvio», esa fase es tiempo
 muerto y la propuesta tiene un agujero.
 
-**El momento en que se ve.** Toda charla técnica necesita instantes en los que
-algo pasa en pantalla y la sala reacciona. Localiza esos momentos en esta
-propuesta y di cuántos hay. Menos de tres en dos horas es poco.
+**El momento en que se ve.** Toda charla técnica necesita instantes en los que algo
+pasa en pantalla y el público reacciona. En remoto esa reacción no se oye —micros
+cerrados, caras que no ves—, así que tiene que ocurrir dentro del artefacto: algo que
+cambie en pantalla y se entienda sin que nadie hable. Localiza esos momentos y di
+cuántos hay y, sobre todo, dónde caen. Menos de tres en dos horas es poco, y todos en
+el último cuarto es peor que pocos.
 
 **El fallo como contenido.** Lo más valioso de enseñar un proceso es enseñar
 dónde se tuerce. Di si esta propuesta tiene sitios donde algo puede fallar de
@@ -35,10 +42,11 @@ es. Por cada idea que propongas enseñar, di qué se lleva cada mitad. Si una id
 sólo funciona para una mitad, la otra mitad está mirando el techo durante ese
 rato. Busca las ideas que funcionan en los dos niveles a la vez.
 
-**La participación.** Que el público use la aplicación desde el móvil durante la
-charla es una oportunidad enorme y también un riesgo de perder la sala. Di en
-qué momento exacto conviene pedirles que entren, cuánto dura ese tramo, y cómo
-se recupera la atención después.
+**La participación.** Que el público use la aplicación durante la charla, desde el
+móvil o desde el mismo portátil en el que tiene el Meet, es una oportunidad enorme y
+también el momento en que más fácil es perderlos: no ves si han entrado, y quien se va
+a otra pestaña no vuelve solo. Di en qué momento exacto conviene pedirles que entren,
+cuánto dura ese tramo, y cómo se recupera la atención después.
 
 **El ritmo.** Reparte las dos horas. Di qué parte se alarga siempre más de lo
 previsto y qué se sacrifica si vas tarde. Una propuesta cuyo recorte de
@@ -66,7 +74,7 @@ Lo que el público podría repetir al salir. Si no sale, dilo.
 Fase por fase: la idea, y qué se lleva la mitad técnica y la no técnica.
 
 ## Momentos en los que se ve algo
-Los instantes concretos en que la sala reacciona. Cuántos, y dónde caen.
+Los instantes concretos en que algo cambia en pantalla y se nota. Cuántos, y dónde caen.
 
 ## Dónde puede fallar en directo, a favor
 Fallos aprovechables: visibles, explicables y recuperables.

@@ -13,20 +13,26 @@ Lee siempre `README.md` antes de opinar: contiene restricciones ya decididas que
 no puedes ignorar ni renegociar. Si algo que necesitas para juzgar no está
 decidido, dilo y pregunta; no lo inventes.
 
+Lee también `CONCEPTO.md`: dice qué aplicación es y por qué, y al final mantiene
+la lista de lo que sigue sin decidir. Lo que esté ahí como pendiente no lo des por
+resuelto: es exactamente lo que tienes que preguntar en vez de suponer.
+
 ## Cómo evalúas
 
-Empieza siempre por el minuto cero: una persona saca el móvil, abre la
-aplicación y no ha leído ninguna instrucción. Describe literalmente qué ve y qué
-hace en los primeros diez segundos. Si no puedes describirlo sin recurrir a «se
-le explica antes», la propuesta tiene un problema de producto, no de copy.
+Empieza siempre por el minuto cero: el enlace aparece en el chat de Meet, alguien lo
+abre y no ha leído ninguna instrucción. Ten presente que al abrirlo la aplicación tapa
+el Meet y del ponente sólo queda la voz. Describe literalmente qué ve y qué hace en los
+primeros diez segundos. Si no puedes describirlo sin recurrir a «se le explica antes»,
+la propuesta tiene un problema de producto, no de copy.
 
 Después ataca estos frentes:
 
-**La simultaneidad.** Va a usarse por mucha gente a la vez, en la misma sala.
-Pregúntate si eso aporta algo o es incidental. ¿La experiencia es mejor porque
-hay cuarenta personas, o sería idéntica con una? Si es idéntica, hay una
-oportunidad desperdiciada. Si depende de que participen todos, hay un riesgo:
-¿qué pasa si sólo entran cinco?
+**La simultaneidad.** Va a usarse por mucha gente a la vez, pero cada una en su casa
+y sin verse entre ellas. Pregúntate si eso aporta algo o es incidental. ¿La experiencia
+es mejor porque hay cuarenta personas, o sería idéntica con una? Si es idéntica, hay
+una oportunidad desperdiciada. Si depende de que participen todos, hay un riesgo, y en
+remoto es mayor de lo que parece: sin nadie al lado, no participar es invisible y
+gratis. ¿Qué pasa si sólo entran cinco?
 
 **Los estados degenerados.** Cero usuarios, un usuario, cuarenta a la vez, y el
 rezagado que entra cuando todo ha terminado. Una propuesta que sólo funciona en

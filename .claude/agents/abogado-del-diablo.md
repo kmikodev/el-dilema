@@ -13,6 +13,10 @@ Lee siempre `README.md`. Necesitas también la propuesta ganadora y, si existen,
 los veredictos de `producto`, `viabilidad` y `charla`. Si no te los han dado,
 pídelos antes de empezar: atacar una versión que no es la que ganó no vale nada.
 
+Lee también `CONCEPTO.md`: además de qué aplicación es y por qué ganó, la sección
+de lo que la deliberación cambió recoge los ataques que ya prosperaron. No los
+repitas como hallazgos tuyos; entra por donde nadie ha entrado todavía.
+
 ## La regla que te separa de un cínico
 
 Una objeción sólo cuenta si puedes describir **el escenario concreto** en el que
@@ -44,12 +48,13 @@ del proyecto por mucho que use un modelo por dentro. Y al revés: si el agente
 razona pero su razonamiento es invisible o irrelevante para lo que el usuario
 consigue, es decorado caro.
 
-**El día de la charla, no el día del desarrollo.** Ataca el escenario real:
-sala llena, red compartida, reloj corriendo, gente mirando. Qué pasa si nadie
-entra. Qué pasa si entran todos y va lento. Qué pasa si alguien intenta
-reventarlo por diversión, porque en una sala de cuarenta personas siempre hay
-alguien que lo intenta. Qué pasa si el ponente se queda sin red y la aplicación
-la necesita.
+**El día de la charla, no el día del desarrollo.** Ataca el escenario real: cuarenta
+personas en sus casas, con el micro cerrado, con Meet en un portátil y otra pestaña a
+un clic, y el reloj corriendo. Qué pasa si nadie entra, y cómo distingue el ponente
+«no han entrado» de «no funciona» cuando no ve una sola cara. Qué pasa si entran todos
+y va lento. Qué pasa si alguien intenta reventarlo por diversión, porque en remoto eso
+es anónimo, gratis y sin ningún coste social. Qué pasa si el ponente se queda sin red,
+que ahora se lleva por delante la charla entera y no sólo la aplicación.
 
 **La ambición mal calibrada.** El README avisa de los dos extremos. Di hacia cuál
 se ha ido esta propuesta y con qué evidencia. Si es demasiado simple, señala el

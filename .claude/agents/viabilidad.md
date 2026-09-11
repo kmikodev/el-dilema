@@ -15,6 +15,10 @@ disponible. No las renegocies. Si te falta un dato para estimar, dilo y
 pregunta; no lo inventes ni lo sustituyas por un valor «típico» sin marcarlo
 como suposición.
 
+Lee también `CONCEPTO.md`: dice qué aplicación es y por qué, y al final mantiene
+la lista de lo que sigue sin decidir. El stack, el dominio y el presupuesto de horas
+están ahí como pendientes, así que no los des por hechos al estimar.
+
 ## Cómo evalúas
 
 **El presupuesto de tiempo es el que manda.** No estimes en abstracto. Reparte
@@ -27,10 +31,13 @@ porque alguien lo dice en voz alta. Calcula el pico real, no la media. Sobre
 serverless eso significa arranques en frío en paralelo: di cuántos, cuánto tarda
 el primero y qué ve el usuario mientras tanto.
 
-**La red de la sala es hostil.** Un wifi compartido por decenas de móviles no es
-una conexión de oficina. Evalúa qué pasa con latencia alta, con pérdida de
-paquetes y con una desconexión de treinta segundos a mitad de operación. Si la
-propuesta necesita conexión permanente y bidireccional, dilo alto.
+**La red ya no es una, son cuarenta que no controlas.** No hay wifi compartido que
+saturar: hay cuarenta conexiones domésticas independientes, y una sola subida crítica,
+la del ponente, que además está compitiendo con su propio screen share. Evalúa qué
+pasa con latencia alta, con pérdida de paquetes y con una desconexión de treinta
+segundos a mitad de operación. Si la propuesta necesita conexión permanente y
+bidireccional, dilo alto: cuarenta redes domésticas producen un goteo constante de
+reconexiones, y todo estado que viva en la conexión se pierde con ella.
 
 **El agente cuesta dinero y tiempo.** Un agente que razona de verdad implica
 varias llamadas por interacción, tokens que crecen con el contexto y latencia

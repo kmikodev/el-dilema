@@ -1,17 +1,37 @@
 # Cómo se trabaja en este repositorio
 
-Este fichero describe **el método de trabajo**, no el proyecto. Qué aplicación se
-construye aquí todavía no está decidido, y decidirlo es parte de lo que se enseña.
+Este fichero describe **el método de trabajo**. Qué se construye está resumido aquí
+abajo, decidido en `README.md` y razonado en `CONCEPTO.md`.
 
-## Regla primera: no inventar el proyecto
+## Qué es este proyecto
 
-El README separa a propósito lo que está decidido de lo que no. Esa separación es
-la fuente de verdad.
+Se construye **el dilema**, una aplicación que se usa una sola vez: durante una charla
+interna de dos horas, en remoto por Google Meet, por unas cuarenta personas a la vez,
+cada una en su casa y en su propia red.
+
+Se lanza una pregunta con dos posturas defendibles. Cada asistente elige lado y escribe
+una justificación breve, desde el móvil o desde el portátil. El agente **no cuenta los
+votos**: extrae el argumento que hay detrás de cada frase, agrupa las respuestas en
+posturas que nadie definió de antemano, nombra la premisa que la mayoría comparte sin
+darse cuenta, y escribe el contraargumento que la ataca. Después se vota otra vez y se
+ve si la sala se ha movido.
+
+Lo que se enseña en la charla es **el proceso**, no el resultado. Por eso el historial
+de este repositorio es material de la charla y se lee en pantalla delante de gente que
+no ha visto el código, y por eso la deliberación que eligió esta aplicación frente a
+otras cuatro candidatas se conserva en `CONCEPTO.md` en vez de resumirse en una línea.
+
+## Regla primera: no inventar lo que no está decidido
+
+El README separa a propósito lo que está decidido de lo que no, y el final de
+`CONCEPTO.md` mantiene la lista de lo que sigue abierto. Esa separación es la fuente de
+verdad, y que la aplicación ya esté elegida no la relaja: sigue abierto casi todo lo
+demás, empezando por el dilema concreto y por el stack.
 
 - Si algo del proyecto no está decidido, **se pregunta**. No se rellena el hueco
   con una suposición razonable, ni se propone «de momento asumo que…».
 - No escribas en `CLAUDE.md`, en los agentes ni en las skills nada que dé por
-  supuesto qué es la aplicación, qué stack usa o qué datos maneja.
+  supuesto qué stack se usa, qué datos se manejan o cómo va el guion de la charla.
 - Cuando una decisión se tome, se escribe en el README y pasa a ser un hecho.
   Hasta entonces es una hipótesis y se nombra como tal.
 
